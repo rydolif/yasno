@@ -1,8 +1,4 @@
 
-// IMPORT SECTION
-@import 'node_modules/bootstrap/scss/bootstrap-reboot.scss'; // Bootstrap Reboot collection
-@import 'node_modules/swiper/swiper.scss'; // SWIPER STYLE
-
 //----------------------fonts---------------------
 $fonts: 'SF Pro Display', sans-serif;
 //---------------------end-fonts---------------------
@@ -10,15 +6,27 @@ $fonts: 'SF Pro Display', sans-serif;
 //----------------------color---------------------
 $accent: #4cddee;
 $text: #000;
-
 //---------------------end-color---------------------
+
+//----------------------RESPONSIVE----------------------
+@mixin  _r($width) {
+	@media only screen and (max-width: $width+ "px") {
+		@content;
+	}
+}
+//---------------------end-RESPONSIVE----------------------
+
+// IMPORT SECTION
+@import 'node_modules/bootstrap/scss/bootstrap-reboot.scss'; // Bootstrap Reboot collection
+@import 'node_modules/swiper/swiper.scss'; // SWIPER STYLE
+
 
 body {
 	overflow-x: hidden;
 	position: relative;
 	min-width: 320px;
 	font-family: $fonts;
-	font-size: 14px;
+	font-size: 19px;
 	color: $text;
 	line-height: 1.4;
 	font-weight: 400;
@@ -26,6 +34,15 @@ body {
 	display: flex;
 	flex-direction: column;
 	justify-content: space-between;
+
+	@include _r(992) {
+		font-size: 16px;
+	}
+
+	@include _r(767) {
+		font-size: 15px;
+	}
+
 }
 
 ::selection {
@@ -112,12 +129,6 @@ input, textarea, select {
 
 }
 
-//----------------------+r(1200)----------------------
-@mixin  _r($width) {
-	@media only screen and (max-width: $width+ "px") {
-		@content;
-	}
-}
 
 // -----CONTAINER-----
 .container {
@@ -161,7 +172,7 @@ input, textarea, select {
 	border: 1px solid #FAA500;
 	letter-spacing: .5px;
 
-	@include _r(576) {
+	@include _r(767) {
 		font-size: 13px;
 		padding: 0 10px;
 	}
@@ -181,9 +192,15 @@ input, textarea, select {
 		border-radius: 50px;
 		background: linear-gradient(90deg, #006CEB 0%, #00D4F1 100%);
 		border: 1px solid #00D4F1;
-		font-size: 19px;
 		padding: 0 20px;
 		letter-spacing: .5px;
+
+		@include _r(767) {
+			height: 35px;
+			font-size: 15px;
+			padding: 0 15px;
+			margin: 0 auto;
+		}
 
 		&:hover, &:focus {
 			border: 1px solid #fff;
@@ -199,8 +216,85 @@ input, textarea, select {
 	&--big {
 		height: 50px;
 		border-radius: 50px;
-		font-size: 19px;
 		padding: 0 25px;
+
+		@include _r(767) {
+			height: 35px;
+			font-size: 15px;
+			padding: 0 15px;
+		}
+	}
+}
+
+// -----HAMBURGER-----
+.hamburger {
+	position: relative;
+	display: none;
+	padding: 0;
+	border: none;
+	background-color: transparent;
+	transition: all .3s;
+	width: 25px;
+	height: 18px;
+	outline: none;
+
+	@include _r(576) {
+		display: flex;
+	}
+
+	&__item {
+		position: absolute;
+		left: 0;
+		top: 50%;
+		transform: translate(0, -50%);
+		width: 25px;
+		height: 2px;
+		background-color: $text;
+		border-radius: 4px;
+		transition: all .6s;
+		bottom: 0;
+
+		&::before,
+		&::after {
+			content: '';
+			display: block;
+			position: absolute;
+			left: 0;
+			background-color: $text;
+			height: 2px;
+			transition: all .6s;
+		}
+
+		&::before {
+			top: 7px;
+			width: 25px;
+		}
+
+		&::after {
+			top: -7px;
+			width: 25px;
+		}
+	}
+
+	&--active {
+		z-index: 100;
+
+		.hamburger__item {
+			background-color: transparent;
+
+			&::before {
+				top: 0;
+				width: 25px;
+				transform: rotate(45deg);
+			}
+
+			&::after {
+				top: 0;
+				width: 25px;
+				transform: rotate(-45deg);
+			}
+		}
+
 	}
 }
 
@@ -212,6 +306,19 @@ input, textarea, select {
 	font-size: 45px;
 	line-height: 110%;
 	margin-bottom: 30px;
+
+	@include _r(992) {
+		font-size: 36px;
+		margin-bottom: 20px;
+	}
+
+	@include _r(767) {
+		font-size: 30px;
+	}
+
+	@include _r(576) {
+		font-size: 24px;
+	}
 }
 
 
@@ -226,13 +333,7 @@ input, textarea, select {
 		display: flex;
 		justify-content: space-between;
 		align-items: center;
-		flex-wrap: wrap;
 		gap: 15px;
-
-		@include _r(576) {
-			justify-content: space-around;
-		}
-
 	}
 
 	&__logo {
@@ -245,7 +346,7 @@ input, textarea, select {
 		}
 	}
 
-	&__info {
+	&__nav {
 		display: flex;
 		align-items: center;
 		gap: 30px;
@@ -268,6 +369,10 @@ input, textarea, select {
 				font-size: 14px;
 			}
 
+			@include _r(576) {
+				display: none;
+			}
+
 			&:hover {
 				color: $text;
 
@@ -275,7 +380,7 @@ input, textarea, select {
 					transform: translate(0, -50%) rotate(180deg);
 				}
 
-				.header__info_select {
+				.header__nav_select {
 					top: 100%;
 					opacity: 1;
 					visibility: visible;
@@ -361,6 +466,10 @@ input, textarea, select {
 	padding-top: 5px;
 	padding-bottom: 40px;
 
+	@include _r(767) {
+		padding: 40px 0;
+	}
+
 	&__content {
 		display: flex;
 		justify-content: space-between;
@@ -391,7 +500,7 @@ input, textarea, select {
 		line-height: 1.2;
 
 		@include _r(992) {
-			margin-bottom: 25px;
+			margin-bottom: 20px;
 			font-size: 22px;
 		}
 
@@ -403,7 +512,7 @@ input, textarea, select {
 
 	p {
 		margin-bottom: 22px;
-		font-size: 19px;
+		
 		line-height: 1.25;
 		letter-spacing: 0.01em;
 
@@ -430,14 +539,11 @@ input, textarea, select {
 
 		@include _r(992) {
 			font-size: 30px;
+			margin-bottom: 20px;
 		}
 
 		@include _r(767) {
-			font-size: 24px;
-		}
-
-		@include _r(576) {
-			font-size: 20px;
+			font-size: 27px;
 		}
 	}
 
@@ -456,6 +562,10 @@ input, textarea, select {
 			gap: 15px;
 		}
 
+		@include _r(576) {
+			grid-template-columns: 1fr;
+		}
+
 		&_item {
 			position: relative;
 			border-radius: 3px;
@@ -472,10 +582,19 @@ input, textarea, select {
 		&_big {
 			grid-column: span 2;
 
+			@include _r(576) {
+				grid-column: span 1;
+			}
+
 			.case__grid_img {
 				left: auto;
 				right: 0;
 				transform: translate(0, 0);
+				max-width: 65%;
+
+				@include _r(992) {
+					max-width: 50%;
+				}
 			}
 		}
 
@@ -500,6 +619,12 @@ input, textarea, select {
 			transform: translate(-50%, 0);
 			z-index: -1;
 			max-width: 100%;
+			max-height: 347px;
+
+			@include _r(992) {
+				max-height: 330px;
+				max-width: 85%;
+			}
 		}
 
 		&_label {
@@ -510,18 +635,6 @@ input, textarea, select {
 			@include _r(992) {
 				right: 5px;
 				top: 5px;
-			}
-		}
-
-		p {
-			font-size: 19px;
-
-			@include _r(992) {
-				font-size: 16px;
-			}
-
-			@include _r(767) {
-				font-size: 14px;
 			}
 		}
 
@@ -553,6 +666,12 @@ input, textarea, select {
 			max-width: 240px;
 			width: 100%;
 
+			img {
+				// @include _r(992) {
+				// 	width: 35px;
+				// }
+			}
+
 			div {
 				width: calc(100% - 66px);
 			}
@@ -571,7 +690,10 @@ input, textarea, select {
 		color: $text;
 		margin-top: 30px;
 		min-height: 560px;
-		font-size: 19px;
+
+		@include _r(992) {
+			min-height: 468px;
+		}
 
 		&_form {
 			display: flex;
@@ -623,6 +745,10 @@ input, textarea, select {
 			grid-column: span 2;
 			align-self: center;
 			padding: 10px 10px 10px 30px;
+
+			@include _r(992) {
+				padding: 10px;
+			}
 		}
 	}
 }
@@ -632,6 +758,14 @@ input, textarea, select {
 	background: linear-gradient(284.04deg, #F8EBFF 15.28%, #FFECEC 73.78%);
 	padding: 80px 0;
 
+	@include _r(992) {
+		padding: 50px 0;
+	}
+
+	@include _r(767) {
+		padding: 30px 0;
+	}
+
 	&__content {
 		display: flex;
 		justify-content: space-between;
@@ -639,12 +773,25 @@ input, textarea, select {
 		gap: 30px;
 		max-width: 720px;
 		margin: 0 auto;
-		font-size: 19px;
+
+		@include _r(767) {
+			max-width: 360px;
+			flex-wrap: wrap;
+		}
 	}
-	
+
 	&__desc {
 		width: 37%;
-		font-size: 19px;
+
+		@include _r(767) {
+			width: 100%;
+		}
+
+		br {
+			@include _r(767) {
+				display: none;
+			}
+		}
 
 		a {
 			display: inline-flex;
@@ -665,6 +812,10 @@ input, textarea, select {
 		box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.15);
 		border-radius: 3px;
 
+		@include _r(767) {
+			width: 100%;
+		}
+
 		img {
 			width: 100%;
 			object-fit: cover;
@@ -676,6 +827,10 @@ input, textarea, select {
 
 		&_text {
 			padding: 10px 30px 30px 30px;
+
+			@include _r(767) {
+				padding: 10px;
+			}
 		}
 
 		&_list {
@@ -694,24 +849,46 @@ input, textarea, select {
 			font-weight: 600;
 			color: #fff;
 			line-height: 1;
+
+			@include _r(767) {
+				font-size: 12px;
+			}
 		}
 	}
 }
 
 
 .details {
-	padding: 95px 0 95px;
+	padding: 95px 0;
+
+	@include _r(992) {
+		padding: 65px 0;
+	}
+
+	@include _r(767) {
+		padding: 50px 0;
+	}
 	
 	&__list {
 		display: grid;
 		grid-template-columns: repeat(3, 1fr);
 		grid-gap: 60px;
 		overflow: auto;
+		padding-bottom: 20px;
+
+		@include _r(992) {
+			grid-gap: 30px;
+		}
 	}
 
 	&__item {
 		text-align: center;
-		font-size: 19px;
+		min-width: 250px;
+
+		@include _r(576) {
+			text-align: left;
+			min-width: 240px;
+		}
 	}
 
 	a {
@@ -729,6 +906,10 @@ input, textarea, select {
 		display: block;
 		margin: 0 auto 20px;
 		max-width: 100%;
+
+		@include _r(576) {
+			margin-left: 0;
+		}
 	}
 
 	&__subtitle {
@@ -741,10 +922,14 @@ input, textarea, select {
 	}
 
 	&__video {
-		height: 420px;
-		margin-top: 80px;
+		position: relative;
+		padding-top: 49%;
+		margin-top: 60px;
 
 		iframe, img {
+			position: absolute;
+			left: 0;
+			top: 0;
 			width: 100%;
 			height: 100%;
 		}
@@ -753,7 +938,6 @@ input, textarea, select {
 
 
 .tabs {
-	font-size: 19px;
 	padding-top: 5px;
 
 	&__list {
@@ -761,12 +945,24 @@ input, textarea, select {
 		justify-content: space-between;
 		flex-wrap: wrap;
 		gap: 3%;
+
+		@include _r(576) {
+			gap: 15px;
+			justify-content: start;
+		}
 	}
 
 	&__item {
 		width: 17%;
 		cursor: pointer;
 		transition: all .6s;
+
+		@include _r(576) {
+			width: 100%;
+			max-width: 135px;
+			display: flex;
+			gap: 10px;
+		}
 
 		&_img {
 			position: relative;
@@ -779,6 +975,13 @@ input, textarea, select {
 			margin-bottom: 15px;
 			transition: all .6s;
 			z-index: 1;
+			flex-shrink: 0;
+
+			@include _r(576) {
+				width: 35px;
+				height: 35px;
+				margin-bottom: 0;
+			}
 
 			img {
 				position: absolute;
@@ -812,13 +1015,42 @@ input, textarea, select {
 		flex-wrap: wrap;
 		padding: 60px 0;
 
+		@include _r(992) {
+			padding: 30px 0;
+		}
+
+		@include _r(767) {
+			max-width: 360px;
+			text-align: center;
+			margin: 0 auto;
+		}
+
 		&_desc {
 			width: 41%;
+
+			@include _r(767) {
+				width: 100%;
+				margin-bottom: 30px;
+			}
 		}
 
 		&_subtitle {
 			font-size: 27px;
 			margin-bottom: 40px;
+
+			@include _r(992) {
+				font-size: 22px;
+				margin-bottom: 20px;
+			}
+
+			@include _r(767) {
+				font-size: 18px;
+				margin-bottom: 15px;
+			}
+
+			@include _r(576) {
+				font-size: 15px;
+			}
 
 			&:last-child {
 				margin-bottom: 0;
@@ -826,8 +1058,11 @@ input, textarea, select {
 		}
 
 		&_text {
-			font-size: 19px;
 			margin-bottom: 20px;
+
+			@include _r(767) {
+				margin-bottom: 10px;
+			}
 
 			&:last-child {
 				margin-bottom: 0;
@@ -835,7 +1070,11 @@ input, textarea, select {
 		}
 
 		&_img {
-			max-width: 55%;
+			width: 55%;
+
+			@include _r(767) {
+				width: 100%;
+			}
 
 			img {
 				width: 100%;
@@ -853,6 +1092,10 @@ input, textarea, select {
 	&__title {
 		@extend .case__title;
 		text-align: center;
+
+		@include _r(480) {
+			text-align: left;
+		}
 	}
 
 	&__item {
@@ -861,7 +1104,11 @@ input, textarea, select {
 		justify-content: space-between;
 		flex-wrap: wrap;
 		margin-bottom: 20px;
-		font-size: 19px;
+
+		@include _r(767) {
+			max-width: 360px;
+			margin: 0 auto 20px;
+		}
 
 		&:last-child {
 			margin-bottom: 0;
@@ -873,6 +1120,12 @@ input, textarea, select {
 			background: #C4C4C4;
 			border-radius: 3px;
 			padding-top: 25%;
+
+			@include _r(767) {
+				width: 100%;
+				padding-top: 56%;
+				margin-bottom: 10px;
+			}
 
 			img {
 				position: absolute;
@@ -887,6 +1140,10 @@ input, textarea, select {
 
 		&_desc {
 			width: 50%;
+
+			@include _r(767) {
+				width: 100%;
+			}
 		}
 	}
 }
@@ -971,7 +1228,7 @@ input, textarea, select {
 
 		&_subtitle {
 			color: $text;
-			font-size: 19px;
+			
 			font-weight: 700;
 			margin-bottom: 15px;
 		}
@@ -989,13 +1246,25 @@ input, textarea, select {
 	padding: 30px 0 110px;
 	text-align: center;
 
+	@include _r(992) {
+		padding: 30px 0 70px;
+	}
+
 	&__title {
 		@extend .case__title;
 		margin-bottom: 35px;
+
+		@include _r(767) {
+			margin-bottom: 25px;
+		}
 	}
 
 	&__img {
 		margin-bottom: 35px;
+		
+		@include _r(767) {
+			margin-bottom: 25px;
+		}
 	}
 
 	&__btn {
@@ -1011,20 +1280,32 @@ input, textarea, select {
 	background: #F7F7FA;
 	padding: 40px 0;
 
+	@include _r(767) {
+		padding: 30px 0;
+	}
+
 	&__subtitle {
 		font-size: 19px;
 		margin-bottom: 20px;
+
+		@include _r(767) {
+			margin-bottom: 7px;
+			font-size: 17px;
+		}
 	}
 
 	&__info {
 		display: flex;
 		justify-content: space-between;
+		flex: 0 0 1;
 		gap: 25px;
 		margin-bottom: 60px;
 		font-size: 17px;
 
-		&_col {
-			min-width: 120px;
+		@include _r(767) {
+			flex-wrap: wrap;
+			margin-bottom: 30px;
+			font-size: 15px;
 		}
 
 		p {
@@ -1076,10 +1357,15 @@ input, textarea, select {
 	&__copy {
 		display: flex;
 		align-items: center;
+		flex-wrap: wrap;
 		gap: 15px;
 		color: #A5ABB0;
 		font-size: 15px;
 		letter-spacing: 0.04em;
+
+		@include _r(767) {
+			gap: 10px;
+		}
 
 		a {
 			color: #6E7277;
