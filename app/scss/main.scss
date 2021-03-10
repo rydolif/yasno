@@ -157,8 +157,9 @@ input, textarea, select {
 	border-radius: 35px;
 	max-width: fit-content;
 	background: linear-gradient(90deg, #FF5E67 0%, #FAA500 96.6%);
-	padding: 0 15px;
+	padding: 0 16px;
 	border: 1px solid #FAA500;
+	letter-spacing: .5px;
 
 	@include _r(576) {
 		font-size: 13px;
@@ -181,7 +182,8 @@ input, textarea, select {
 		background: linear-gradient(90deg, #006CEB 0%, #00D4F1 100%);
 		border: 1px solid #00D4F1;
 		font-size: 19px;
-		padding: 0 25px;
+		padding: 0 20px;
+		letter-spacing: .5px;
 
 		&:hover, &:focus {
 			border: 1px solid #fff;
@@ -199,7 +201,6 @@ input, textarea, select {
 		border-radius: 50px;
 		font-size: 19px;
 		padding: 0 25px;
-
 	}
 }
 
@@ -207,7 +208,7 @@ input, textarea, select {
 // -----TITLE-----
 .h2 {
 	display: inline-block;
-	font-weight: 800;
+	font-weight: 700;
 	font-size: 45px;
 	line-height: 110%;
 	margin-bottom: 30px;
@@ -215,7 +216,7 @@ input, textarea, select {
 
 
 .header {
-	padding: 15px 0;
+	padding: 10px 0;
 
 	@include _r(576) {
 		padding: 10px 0;
@@ -336,8 +337,8 @@ input, textarea, select {
 
 	&__title {
 		text-align: center;
-		font-size: 68px;
-		font-weight: 800;
+		font-size: 70px;
+		font-weight: 600;
 		line-height: 1.1;
 
 		@include _r(992) {
@@ -357,8 +358,8 @@ input, textarea, select {
 
 
 .info {
-	padding-top: 10px;
-	padding-bottom: 45px;
+	padding-top: 5px;
+	padding-bottom: 40px;
 
 	&__content {
 		display: flex;
@@ -366,7 +367,15 @@ input, textarea, select {
 		flex-wrap: wrap;
 
 		&_col {
-			width: 45%;
+			width: 43%;
+
+			&:first-child {
+				width: 50%;
+
+				@include _r(767) {
+					width: 100%;
+				}
+			}
 
 			@include _r(767) {
 				width: 100%;
@@ -378,8 +387,8 @@ input, textarea, select {
 	&__title {
 		margin-bottom: 35px;
 		font-size: 25px;
-		font-weight: 800;
-		line-height: 1.3;
+		font-weight: 700;
+		line-height: 1.2;
 
 		@include _r(992) {
 			margin-bottom: 25px;
@@ -393,9 +402,10 @@ input, textarea, select {
 	}
 
 	p {
-		margin-bottom: 20px;
+		margin-bottom: 22px;
 		font-size: 19px;
 		line-height: 1.25;
+		letter-spacing: 0.01em;
 
 		@include _r(992) {
 			font-size: 16px;
@@ -414,7 +424,7 @@ input, textarea, select {
 	padding-bottom: 80px;
 
 	&__title {
-		font-weight: 800;
+		font-weight: 700;
 		font-size: 35px;
 		margin-bottom: 40px;
 
@@ -449,7 +459,7 @@ input, textarea, select {
 		&_item {
 			position: relative;
 			border-radius: 3px;
-			padding-bottom: 340px;
+			padding-bottom: 347px;
 			z-index: 1;
 			color: #fff;
 
@@ -472,8 +482,10 @@ input, textarea, select {
 		&_desc {
 			position: relative;
 			display: grid;
+			align-items: start;
 			grid-gap: 15px;
 			padding: 30px 35px;
+			line-height: 1.3;
 
 			@include _r(992) {
 				padding: 15px;
@@ -514,13 +526,13 @@ input, textarea, select {
 		}
 
 		span {
-			display: inline-block;
+			display: inline;
 			padding: 4px 7px;
 			background-color: #fff;
 			color: $text;
-			font-size: 12px;
+			font-size: 10px;
 			font-weight: 600;
-			line-height: 1;
+			line-height: 1.2;
 			border-radius: 2px;
 		}
 
@@ -559,6 +571,7 @@ input, textarea, select {
 		color: $text;
 		margin-top: 30px;
 		min-height: 560px;
+		font-size: 19px;
 
 		&_form {
 			display: flex;
@@ -610,10 +623,6 @@ input, textarea, select {
 			grid-column: span 2;
 			align-self: center;
 			padding: 10px 10px 10px 30px;
-
-			p {
-				font-size: 19px;
-			}
 		}
 	}
 }
@@ -691,7 +700,7 @@ input, textarea, select {
 
 
 .details {
-	padding: 80px 0 100px;
+	padding: 95px 0 95px;
 	
 	&__list {
 		display: grid;
@@ -745,6 +754,7 @@ input, textarea, select {
 
 .tabs {
 	font-size: 19px;
+	padding-top: 5px;
 
 	&__list {
 		display: flex;
@@ -838,7 +848,7 @@ input, textarea, select {
 
 
 .design {
-	padding: 50px 0;
+	padding: 40px 0 50px;
 
 	&__title {
 		@extend .case__title;
@@ -951,13 +961,13 @@ input, textarea, select {
 	}
 
 	&__item {
-		padding: 25px 20px;
-		background: #F9F5D5;
-		border-radius: 3px;
-		height: auto;
 		display: flex;
 		flex-direction: column;
 		justify-content: space-between;
+		height: auto;
+		padding: 25px 20px;
+		background: #F9F5D5;
+		border-radius: 3px;
 
 		&_subtitle {
 			color: $text;
@@ -969,22 +979,23 @@ input, textarea, select {
 		&_desc {
 			color: rgba(0, 0, 0, 0.6);
 			margin-bottom: 30px;
+			font-size: 15px;
 		}
 	}
 }
 
 
 .consultation {
-	padding: 50px 0 110px;
+	padding: 30px 0 110px;
 	text-align: center;
 
 	&__title {
 		@extend .case__title;
-		margin-bottom: 15px;
+		margin-bottom: 35px;
 	}
 
 	&__img {
-		margin-bottom: 55px;
+		margin-bottom: 35px;
 	}
 
 	&__btn {
@@ -1009,7 +1020,7 @@ input, textarea, select {
 		display: flex;
 		justify-content: space-between;
 		gap: 25px;
-		margin-bottom: 65px;
+		margin-bottom: 60px;
 		font-size: 17px;
 
 		&_col {
@@ -1036,7 +1047,7 @@ input, textarea, select {
 	&__soc {
 		display: flex;
 		gap: 15px;
-		
+
 		a {
 			display: flex;
 			justify-content: center;
