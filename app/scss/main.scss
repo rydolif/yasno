@@ -194,6 +194,7 @@ input, textarea, select {
 		border: 1px solid #00D4F1;
 		padding: 0 20px;
 		letter-spacing: .5px;
+		font-size: 19px;
 
 		@include _r(767) {
 			height: 35px;
@@ -217,6 +218,7 @@ input, textarea, select {
 		height: 50px;
 		border-radius: 50px;
 		padding: 0 25px;
+		font-size: 19px;
 
 		@include _r(767) {
 			height: 35px;
