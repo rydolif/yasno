@@ -3,7 +3,6 @@
 @import 'node_modules/bootstrap/scss/bootstrap-reboot.scss'; // Bootstrap Reboot collection
 @import 'node_modules/swiper/swiper.scss'; // SWIPER STYLE
 
-
 //----------------------fonts---------------------
 $fonts: 'SF Pro Display', sans-serif;
 //---------------------end-fonts---------------------
@@ -79,6 +78,11 @@ a {
 	&:hover {
 		color: #006ceb;
 	}
+}
+
+svg, path {
+	fill: $text;
+	transition: all .6s;
 }
 
 input, textarea, select {
@@ -189,7 +193,16 @@ input, textarea, select {
 			color: #fff;
 		}
 	}
+
+	&--big {
+		height: 50px;
+		border-radius: 50px;
+		font-size: 19px;
+		padding: 0 25px;
+
+	}
 }
+
 
 // -----TITLE-----
 .h2 {
@@ -684,6 +697,7 @@ input, textarea, select {
 		display: grid;
 		grid-template-columns: repeat(3, 1fr);
 		grid-gap: 60px;
+		overflow: auto;
 	}
 
 	&__item {
@@ -822,6 +836,7 @@ input, textarea, select {
 	}
 }
 
+
 .design {
 	padding: 50px 0;
 
@@ -868,12 +883,195 @@ input, textarea, select {
 
 
 .question {
+	padding: 50px 0;
+
 	&__title {
 		@extend .case__title;
 		text-align: center;
 	}
+
+	&__wrap {
+		position: relative;
+		z-index: 1;
+	}
+
+	&__slider {
+		&_wrapper {
+			z-index: 2;
+			align-content: stretch;
+		}
+	}
+
+	&__button {
+		position: absolute;
+		width: calc(100% + 120px);
+		top: 50%;
+		left: 50%;
+		transform: translate(-50%, -50%);
+		height: 30px;
+		display: flex;
+		justify-content: space-between;
+		z-index: -1;
+
+		@include _r(992) {
+			display: none;
+		}
+
+		&_prev,
+		&_next {
+			position: relative;
+			width: 30px;
+			height: 30px;
+			border-radius: 50%;
+			background-color: #fff;
+			line-height: 0;
+			z-index: 1;
+			outline: none;
+			transition: all .6s;
+
+			&::before {
+				content: url(../img/arrow__right.svg);
+				position: absolute;
+				left: 50%;
+				top: 50%;
+				transform: translate(-50%, -50%);
+				transition: all .6s;
+			}
+
+			&:hover {
+				&::before {
+					transform: translate(-50%, -50%) scale(1.2);
+				}
+			}
+		}
+
+		&_prev {
+			transform: rotate(-180deg);
+		}
+	}
+
+	&__item {
+		padding: 25px 20px;
+		background: #F9F5D5;
+		border-radius: 3px;
+		height: auto;
+		display: flex;
+		flex-direction: column;
+		justify-content: space-between;
+
+		&_subtitle {
+			color: $text;
+			font-size: 19px;
+			font-weight: 700;
+			margin-bottom: 15px;
+		}
+
+		&_desc {
+			color: rgba(0, 0, 0, 0.6);
+			margin-bottom: 30px;
+		}
+	}
 }
 
+
+.consultation {
+	padding: 50px 0 110px;
+	text-align: center;
+
+	&__title {
+		@extend .case__title;
+		margin-bottom: 15px;
+	}
+
+	&__img {
+		margin-bottom: 55px;
+	}
+
+	&__btn {
+		display: flex;
+		justify-content: center;
+		flex-wrap: wrap;
+		gap: 15px;
+	}
+}
+
+
 .footer {
-	height: 500px;
+	background: #F7F7FA;
+	padding: 40px 0;
+
+	&__subtitle {
+		font-size: 19px;
+		margin-bottom: 20px;
+	}
+
+	&__info {
+		display: flex;
+		justify-content: space-between;
+		gap: 25px;
+		margin-bottom: 65px;
+		font-size: 17px;
+
+		&_col {
+			min-width: 120px;
+		}
+
+		p {
+			position: relative;
+			margin-bottom: 10px;
+			padding-left: 25px;
+
+			&:last-child {
+				margin-bottom: 0;
+			}
+
+			svg {
+				position: absolute;
+				left: 0;
+				top: 5px;
+			}
+		}
+	}
+
+	&__soc {
+		display: flex;
+		gap: 15px;
+		
+		a {
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			width: 30px;
+			height: 30px;
+			margin: 0;
+
+			&:hover {
+				path {
+					fill: red;
+				}
+			}
+		}
+
+		svg {
+			max-width: 90%;
+			max-height: 90%;
+		}
+
+		path {
+			fill: $text;
+		}
+	}
+
+	&__copy {
+		display: flex;
+		align-items: center;
+		gap: 15px;
+		color: #A5ABB0;
+		font-size: 15px;
+		letter-spacing: 0.04em;
+
+		a {
+			color: #6E7277;
+		}
+	}
 }
