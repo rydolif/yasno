@@ -951,6 +951,9 @@ input, textarea, select {
 		@include _r(992) {
 			grid-gap: 30px;
 		}
+		@include _r(576) {
+			margin-right: -15px;
+		}
 	}
 
 	&__item {
@@ -1232,6 +1235,10 @@ input, textarea, select {
 	&__wrap {
 		position: relative;
 		z-index: 1;
+
+		@include _r(576) {
+			margin-right: -15px;
+		}
 	}
 
 	&__slider {
