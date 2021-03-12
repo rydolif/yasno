@@ -351,13 +351,8 @@ input, textarea, select {
 	&__nav {
 		display: flex;
 		align-items: center;
-		gap: 30px;
 		min-width: fit-content;
 		white-space: nowrap;
-
-		@include _r(992) {
-			gap: 15px;
-		}
 
 		&_more {
 			position: relative;
@@ -366,9 +361,11 @@ input, textarea, select {
 			font-weight: 600;
 			color: $text;
 			padding: 5px 25px 5px 0;
+			margin-right: 30px;
 
 			@include _r(992) {
 				font-size: 14px;
+				margin-right: 15px;
 			}
 
 			@include _r(576) {
@@ -463,6 +460,7 @@ input, textarea, select {
 .info {
 	padding-top: 5px;
 	padding-bottom: 40px;
+
 	&__content {
 		display: flex;
 		justify-content: space-between;
